@@ -1,1 +1,1 @@
-Github Finder Project with using Flask Framework, Github Rest Api and Python
+GitHub Finder Project with using Flask Framework, GitHub Rest Api and Python

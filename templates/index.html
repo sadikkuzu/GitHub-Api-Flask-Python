@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
-    <title>Github Finder</title>
+    <title>GitHub Finder</title>
 
     
 </head>
@@ -13,17 +13,17 @@
     <nav class="navbar navbar-dark bg-danger mb-3">
         <div class="container">
             
-            <a href="/" class = "navbar-brand">Github Kullanıcı Bulma</a>
+            <a href="/" class = "navbar-brand">GitHub Kullanıcı Bulma</a>
         </div>
     </nav>
     <div class="container searchContainer">
         <div class="search card card-body">
-            <h3>Github Kullanıcılarını Arayın</h3>
+            <h3>GitHub Kullanıcılarını Arayın</h3>
             <p class="lead">
                 Bir kullanıcı adı girin ve kullanıcının bilgilerine ulaşın!
             </p>
             <form action="/" method="post">
-                <input type="text" name="githubname" class = "form-control" placeholder="Github Kullanıcı adı">
+                <input type="text" name="githubname" class = "form-control" placeholder="GitHub Kullanıcı adı">
                 <br>
                 <button type = "submit" class ="btn btn-danger">Ara</button>
             </form>
@@ -45,10 +45,16 @@
                         <span class="badge badge-info">Takip Edilen: {{profile.following}}</span>
                         <br><br>
                         <ul class="list-group">
+                            {% if profile.company %}
                           <li class="list-group-item">Şirket: {{profile.company}}</li>
-                          <li class="list-group-item">Website/Blog:{{profile.blog}}</li>
-                          <li class="list-group-item">Yer:{{profile.location}}</li>
-                          <li class="list-group-item">Ne zamandan beri üye:{{profile.created_at}}</li>
+                            {% endif %}
+                            {% if profile.blog %}
+                          <li class="list-group-item">Website: {{profile.blog}} </li> <!-- <a href="//{{profile.blog}}" target="_blank">{{profile.blog}}</a> </li> -->
+                            {% endif %}
+                            {% if profile.location %}
+                          <li class="list-group-item">Yer: {{profile.location}}</li>
+                            {% endif %}
+                          <li class="list-group-item">Ne zamandan beri üye: {{profile.created_at}}</li>
                         </ul>
                       </div>
                     </div>
@@ -65,7 +71,7 @@
                           <div class="col-md-6">
                           <span class="badge badge-primary">Yıldızlar: {{repo.stargazers_count}} </span>
                           <span class="badge badge-primary">İzleyiciler: {{repo.watchers}}</span>
-                          <span class="badge badge-success">Forklar:{{repo.forks}}</span>
+                          <span class="badge badge-success">Forklar: {{repo.forks}}</span>
                           </div>
                         </div>
                 </div>
@@ -75,7 +81,7 @@
                                
                     <!--- Repoların Gösterileceği Kısım" -->
                   </div> 
-                  hr
+
             
         </div>
         {% else %}

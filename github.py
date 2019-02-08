@@ -1,9 +1,11 @@
+# -*- coding: cp1254 -*-
 from flask import Flask,render_template,request
 import requests
 app = Flask(__name__)
 base_url = "https://api.github.com/users/"
 
-@app.route("/",methods = ["GET","POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         githubname = request.form.get("githubname")
@@ -12,14 +14,18 @@ def index():
 
         user_info = response_user.json()
         repos = response_repos.json()
+
+        #  if 'company' not in user_info or user_info['company'] is None:
+        #      user_info['company'] = ""
         
         if "message" in user_info:
-            return render_template("index.html",error = "KullanÄ±cÄ± BulunamadÄ±...")
+            return render_template("index.html", error="Kullanýcý Bulunamadý...")
         else:
 
-            return render_template("index.html",profile = user_info,repos = repos)
+            return render_template("index.html", profile=user_info, repos=repos)
     else:
         return render_template("index.html")
 
+
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
